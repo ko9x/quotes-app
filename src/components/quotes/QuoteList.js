@@ -1,5 +1,4 @@
 import { Fragment } from 'react';
-
 import QuoteItem from './QuoteItem';
 import classes from './QuoteList.module.css';
 
