@@ -1,4 +1,4 @@
-import { Route, Switch } from "react-router-dom";
+import { Route, Switch, Redirect } from "react-router-dom";
 import MainNavigation from "./components/layout/MainNavigation";
 import Quotes from "./pages/Quotes";
 import AddQuote from "./pages/AddQuote";
@@ -6,12 +6,17 @@ import AddQuote from "./pages/AddQuote";
 function App() {
   return (
     <section>
-      <MainNavigation></MainNavigation>
+      <MainNavigation />
       <Switch>
-        <Route path="/quotes" component={Quotes} ></Route>
+        <Route exact path="">
+          <Redirect to="/quotes" />
+        </Route>
       </Switch>
       <Switch>
-        <Route path="/add-quote" component={AddQuote} exact></Route>
+        <Route path="/quotes" component={Quotes} />
+      </Switch>
+      <Switch>
+        <Route path="/add-quote" component={AddQuote} exact />
       </Switch>
     </section>
   );
