@@ -26,7 +26,7 @@ const QuoteForm = (props) => {
       body: JSON.stringify({
         author: enteredAuthor,
         text: enteredText,
-        comments: []
+        comments: [{id: 1, text: 'this is a comment'}, {id: 2, text: 'a totally different comment'}]
       }),
       headers: {
         "Content-Type": "application/json",
