@@ -11,6 +11,7 @@ const CommentsList = (props) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
+    console.log('here in comment list', ); //@DEBUG
     const tryComments = () => {
       for (let quote of quotes) {
         let comArr = [];

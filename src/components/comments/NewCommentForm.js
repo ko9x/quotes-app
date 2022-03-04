@@ -1,11 +1,14 @@
-import { useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useRef, useContext } from 'react';
+import { context } from '../../pages/Quotes';
+import { useLocation, useHistory } from 'react-router-dom';
 import classes from './NewCommentForm.module.css';
 
 const NewCommentForm = (props) => {
+  const {fetchComments} = useContext(context)
   const commentTextRef = useRef();
   const location = useLocation();
   const key = location.pathname.substring(8)
+  const history = useHistory();
 
   console.log('location', key); //@DEBUG
 
@@ -25,7 +28,9 @@ const NewCommentForm = (props) => {
       },
     }).then(res => res.json()).then(data => console.log(data));
 
-    return response
+    fetchComments(key)
+    // history.push('/quotes/')
+
 
   };
 
