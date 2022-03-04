@@ -4,7 +4,8 @@ import classes from "./CommentsList.module.css";
 import { useEffect, useState, useContext } from "react";
 import { context } from "../../pages/Quotes";
 const CommentsList = (props) => {
-  const quotes = useContext(context);
+  const {quotes} = useContext(context);
+  console.log('quotes', quotes); //@DEBUG
   const location = useLocation();
   const key = location.pathname.substring(8);
   const [comments, setComments] = useState([]);
@@ -14,14 +15,15 @@ const CommentsList = (props) => {
       for (let quote of quotes) {
         let comArr = [];
         if (quote.id === key) {
-          let i = quote.comments.length - 1;
-          while (i > -1) {
-            comArr.push(quote.comments[i]);
-            i--;
-          }
-        }
+          for (const key in quote.comments) {
+            comArr.push({
+              id: key,
+              text: quote.comments[key].text,
+            });
+          };
+        };
         setComments(comArr);
-      }
+      };
     };
 
     tryComments();
