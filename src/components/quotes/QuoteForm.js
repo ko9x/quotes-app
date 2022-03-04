@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-
+import { useHistory } from 'react-router-dom';
 import Card from '../UI/Card';
 import LoadingSpinner from '../UI/LoadingSpinner';
 import classes from './QuoteForm.module.css';
@@ -7,6 +7,7 @@ import classes from './QuoteForm.module.css';
 const QuoteForm = (props) => {
   const authorInputRef = useRef();
   const textInputRef = useRef();
+  const history = useHistory();
 
   function submitFormHandler(event) {
     event.preventDefault();
@@ -14,10 +15,24 @@ const QuoteForm = (props) => {
     const enteredAuthor = authorInputRef.current.value;
     const enteredText = textInputRef.current.value;
 
+    const navTo = (destination) => {
+      history.push('/quotes/' + destination)
+    }
+
     // optional: Could validate here
 
-    props.onAddQuote({ author: enteredAuthor, text: enteredText });
-  }
+    fetch('https://react-http-max-54195-default-rtdb.firebaseio.com/quotes.json', {
+      method: 'POST',
+      body: JSON.stringify({
+        author: enteredAuthor,
+        text: enteredText,
+        comments: []
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).then(res => res.json()).then(data => navTo(data.name));
+  };
 
   return (
     <Card>
