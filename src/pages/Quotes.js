@@ -29,7 +29,7 @@ const Quotes = () => {
           text: data[key].text,
           comments: data[key].comments,
         });
-      }
+      };
 
       setQuotes(list);
     };
