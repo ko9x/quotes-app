@@ -1,10 +1,10 @@
 import { Switch, Route, Link, useLocation } from "react-router-dom";
 import QuoteList from "../components/quotes/QuoteList";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
-import Comments from "../components/comments/Comments";
 import classes from "./Quotes.module.css";
-import { useEffect, useState } from "react";
+import { useEffect, useState, createContext } from "react";
 
+export const context = createContext({})
 const Quotes = () => {
   const [quotes, setQuotes] = useState([]);
 
@@ -39,10 +39,8 @@ const Quotes = () => {
 
   const location = useLocation();
 
-  console.log("quotes main", quotes); //@DEBUG
-
   return (
-    <section>
+    <context.Provider value={quotes}>
       <Switch>
         <Route path="/quotes" exact>
           {quotes && <QuoteList quotes={quotes} />}
@@ -61,11 +59,10 @@ const Quotes = () => {
           </div>
         </Route>
         <Route path="/quotes/:quoteId/comments">
-          <HighlightedQuote author={"Some Author"} text={"some text"} />
-          <Comments />
+          <HighlightedQuote />
         </Route>
       </Switch>
-    </section>
+    </context.Provider>
   );
 };
 
