@@ -1,4 +1,4 @@
-import { Switch, Route, Link, useLocation, useHistory } from "react-router-dom";
+import { Switch, Route, Link, useLocation } from "react-router-dom";
 import QuoteList from "../components/quotes/QuoteList";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
 import classes from "./Quotes.module.css";
@@ -7,7 +7,6 @@ import { useEffect, useState, createContext } from "react";
 export const context = createContext({});
 const Quotes = () => {
   const [quotes, setQuotes] = useState([]);
-  const history = useHistory();
 
   const fetchQuotes = async () => {
     const response = await fetch(
