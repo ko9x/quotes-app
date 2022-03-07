@@ -10,11 +10,9 @@ const NewCommentForm = (props) => {
   const key = location.pathname.substring(8)
   const history = useHistory();
 
-  console.log('location', key); //@DEBUG
 
   const submitFormHandler = (event) => {
     event.preventDefault();
-    console.log('event', event.target.comment.value); //@DEBUG
 
     // optional: Could validate here
 

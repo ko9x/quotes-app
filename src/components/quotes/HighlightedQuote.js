@@ -11,7 +11,6 @@ const HighlightedQuote = (props) => {
   let loading = true;
 
   useEffect(() => {
-    console.log('here in highlighted', ); //@DEBUG
     const getQuote = async () => {
       const response = await fetch(
         "https://react-http-max-54195-default-rtdb.firebaseio.com/quotes/" +

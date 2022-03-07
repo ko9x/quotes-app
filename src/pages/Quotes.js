@@ -10,7 +10,6 @@ const Quotes = () => {
   const history = useHistory();
 
   const fetchQuotes = async () => {
-    console.log('here in quotes', ); //@DEBUG
     const response = await fetch(
       "https://react-http-max-54195-default-rtdb.firebaseio.com/quotes.json"
     );
