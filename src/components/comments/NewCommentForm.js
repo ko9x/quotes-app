@@ -1,6 +1,6 @@
 import { useRef, useContext } from 'react';
 import { context } from '../../pages/Quotes';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import classes from './NewCommentForm.module.css';
 
 const NewCommentForm = (props) => {
@@ -22,7 +22,7 @@ const NewCommentForm = (props) => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then(res => res.json()).then(data => fetchComments());
+    }).then(res => res.json()).then(data => fetchComments(response));
 
   };
 

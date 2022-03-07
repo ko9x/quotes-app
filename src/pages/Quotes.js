@@ -1,7 +1,6 @@
-import { Switch, Route, Link, useLocation } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 import QuoteList from "../components/quotes/QuoteList";
 import HighlightedQuote from "../components/quotes/HighlightedQuote";
-import classes from "./Quotes.module.css";
 import { useEffect, useState, createContext } from "react";
 
 export const context = createContext({});
@@ -45,8 +44,6 @@ const Quotes = () => {
     return quotes
   }
 
-  const location = useLocation();
-
   return (
     <context.Provider value={{ getQuotes: getQuotes, fetchComments: fetchComments}}>
       <Switch>
@@ -56,15 +53,7 @@ const Quotes = () => {
       </Switch>
       <Switch>
         <Route path="/quotes/:quoteId" exact>
-          <HighlightedQuote author={"Some Author"} text={"some text"} />
-          <div className={classes.comments}>
-            <Link
-              style={{ textDecoration: "none", color: "#008080" }}
-              to={location.pathname + "/comments"}
-            >
-              Load Comments
-            </Link>
-          </div>
+          <HighlightedQuote />
         </Route>
         <Route path="/quotes/:quoteId/comments">
           <HighlightedQuote />
