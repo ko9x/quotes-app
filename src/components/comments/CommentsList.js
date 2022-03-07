@@ -10,8 +10,9 @@ const CommentsList = (props) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
+    setComments([])
     const quotes = getQuotes();
-    const tryComments = async () => {
+    const tryComments = () => {
       for (let quote of quotes) {
         if (quote.id === key) {
           for (const key in quote.comments) {
