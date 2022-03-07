@@ -38,15 +38,18 @@ const Quotes = () => {
     fetchQuotes();
   }, []);
 
-  const fetchComments = (key) => {
+  const fetchComments = () => {
     fetchQuotes();
-    history.push('/quotes/')
   };
+
+  const getQuotes = () => {
+    return quotes
+  }
 
   const location = useLocation();
 
   return (
-    <context.Provider value={{ quotes: quotes, fetchComments: fetchComments}}>
+    <context.Provider value={{ getQuotes: getQuotes, fetchComments: fetchComments}}>
       <Switch>
         <Route path="/quotes" exact>
           {quotes && <QuoteList quotes={quotes} />}

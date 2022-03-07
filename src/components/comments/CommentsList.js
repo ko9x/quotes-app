@@ -4,12 +4,13 @@ import classes from "./CommentsList.module.css";
 import { useEffect, useState, useContext } from "react";
 import { context } from "../../pages/Quotes";
 const CommentsList = (props) => {
-  const { quotes } = useContext(context);
+  const { getQuotes } = useContext(context);
   const location = useLocation();
   const key = location.pathname.substring(8);
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
+    const quotes = getQuotes();
     const tryComments = async () => {
       for (let quote of quotes) {
         if (quote.id === key) {
@@ -27,7 +28,7 @@ const CommentsList = (props) => {
     };
 
     tryComments();
-  }, [key, quotes]);
+  }, [key, getQuotes]);
 
   return (
     <ul className={classes.comments}>

@@ -8,8 +8,6 @@ const NewCommentForm = (props) => {
   const commentTextRef = useRef();
   const location = useLocation();
   const key = location.pathname.substring(8)
-  const history = useHistory();
-
 
   const submitFormHandler = (event) => {
     event.preventDefault();
@@ -24,11 +22,7 @@ const NewCommentForm = (props) => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then(res => res.json()).then(data => console.log(data));
-
-    fetchComments(key)
-    // history.push('/quotes/')
-
+    }).then(res => res.json()).then(data => fetchComments());
 
   };
 
